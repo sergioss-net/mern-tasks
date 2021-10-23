@@ -14,7 +14,9 @@ const app = express();
 conectarDB();
 
 //Habilitar CORS "Solicitudes De Origen Cruzado", poder recibir peticiones de otro dominio
-app.use(cors());
+//app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
+app.options("*", cors());
 
 //Habilitar express.json, nos va a permitir leer datos que el usuario coloque
 //Cuando se coloca "express.json", se tiene que enviar el HEADER como "application/json"
@@ -25,7 +27,7 @@ app.use( express.json( { extended: true } ) );
 //Para el "cliente-front-end" usaremos el puerto 3000 y para el "servidor-back-end" el 4000.
 //Si existe "process.env.PORT" se asigna a PORT, si NO existe "process.env.PORT" se asigna el 4000 a PORT.
 //Heroku que es la plataforma donde se alojara el proyecto, va a buscar la variable de entorno "process.env.PORT"
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;//PUERTO DE LA APP
 
 //Importar las rutas creadas en el archivo "routes/usuarios.js" para el endpoint '/api/usuarios'
 app.use('/api/usuarios', require('./routes/usuarios'));
@@ -43,6 +45,6 @@ app.use('/api/tareas', require('./routes/tareas'));
 }) */
 
 //Ejecutar la app, ó el servidor, "port" correponde al puerto y '0,0,0,0' corresponde al dominio que lo va a asignar Heroku
-app.listen(port, '0,0,0,0', () => {
+app.listen(port, '0,0,0,0', () => {//ARRANCAR EL SERV.
     console.log(`El servidor esta funcionando en el puerto ${port}`);
 })
