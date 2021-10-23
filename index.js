@@ -45,6 +45,6 @@ app.use('/api/tareas', require('./routes/tareas'));
 }) */
 
 //Ejecutar la app, ó el servidor, "port" correponde al puerto y '0,0,0,0' corresponde al dominio que lo va a asignar Heroku
-app.listen(port, '0,0,0,0', () => {//ARRANCAR EL SERV.
+app.listen(port, () => {//ARRANCAR EL SERV.
     console.log(`El servidor esta funcionando en el puerto ${port}`);
 })
